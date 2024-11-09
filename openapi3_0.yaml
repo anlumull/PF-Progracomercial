@@ -1,0 +1,489 @@
+openapi: 3.0.1 
+info:
+    title: Aplicacion diseñada para el curso de Programacion comercial
+    description: Esta api esta diseñada para manejar cursos, asignaciones y tareas de un grupo de estudiantes y maestros.
+    version: 1.0.0
+servers:
+- url: http://127.0.0.1:8000/api
+tags:
+- name: register
+description: En este endpoint se manejara toda la informacion necesaria para registrar un nuevo usuario.
+paths:
+    /register:
+        post:
+            tags:
+            - register
+            summary: Inserta la informacion de un nuevo usuario a la BD.
+            requestedBody:
+                content:
+                    application/json:
+                          schema:
+                                $ref: '#/components/schemas/RegisterAPIView'
+                    required: true
+            responses:
+            200:
+                content:
+                    application/json:
+                        schema:                                
+                            $ref: '#/components/schemas/RegisterAPIView'
+            400:
+                content:
+                    application/json:
+                        schema:                                
+                            $ref: '#/components/schemas/existingEmail'
+    /login:
+        post:
+            tags:
+            - login
+            summary: Logea al usuario.
+            requestedBody:
+                content:
+                    application/json:
+                          schema:
+                                $ref: '#/components/schemas/RegisterAPIView'
+                    required: true
+            responses:
+            200:
+                content:
+                    application/json:
+                        schema:                                
+                            $ref: '#/components/schemas/tokenAccesso'
+            500:
+                content:
+                    application/json:
+                        schema:                                
+                            $ref: '#/components/responses/NotFound'
+    /user:
+        get:
+            tags:
+            - User
+            summary: Obtiene la informacion del usuario.
+            requestedBody:
+                content:
+                    application/json:
+                          schema:
+                                $ref: '#/components/schemas/RegisterAPIView'
+                    required: true
+            responses:
+            500:
+                content:
+                    application/json:
+                        schema:                                
+                            $ref: '#/components/responses/NotFound'
+    /alumnos:
+        get:
+            tags:
+            - User
+            summary: Obtiene la informacion del alumno.
+            requestedBody:
+                content:
+                    application/json:
+                          schema:
+                                $ref: '#/components/schemas/userModel'
+                    required: true
+            responses:
+            500:
+                content:
+                    application/json:
+                        schema:                                
+                            $ref: '#/components/responses/NotFound'
+        post:
+            tags:
+            - User
+            summary: Postea la informacion del alumno nuevo.
+            requestedBody:
+                content:
+                    application/json:
+                          schema:
+                                $ref: '#/components/schemas/userModel'
+                    required: true
+            responses:
+            500:
+                content:
+                    application/json:
+                        schema:                                
+                            $ref: '#/components/responses/NotFound'
+        put:
+            tags:
+            - User
+            summary: Actualiza la informacion del alumno.
+            requestedBody:
+                content:
+                    application/json:
+                          schema:
+                                $ref: '#/components/schemas/userModel'
+                    required: true
+            responses:
+            500:
+                content:
+                    application/json:
+                        schema:                                
+                            $ref: '#/components/responses/NotFound'
+
+        delete:
+            tags:
+            - User
+            summary: Elimina la informacion del alumno.
+            requestedBody:
+                content:
+                    application/json:
+                          schema:
+                                $ref: '#/components/schemas/userModel'
+                    required: true
+            responses:
+            500:
+                content:
+                    application/json:
+                        schema:                                
+                            $ref: '#/components/responses/NotFound'
+
+    /maestros:
+        get:
+            tags:
+            - User
+            summary: Obtiene la informacion del Maestro.
+            requestedBody:
+                content:
+                    application/json:
+                          schema:
+                                $ref: '#/components/schemas/userModel'
+                    required: true
+            responses:
+            500:
+                content:
+                    application/json:
+                        schema:                                
+                            $ref: '#/components/responses/NotFound'
+        post:
+            tags:
+            - User
+            summary: Postea la informacion del Maestro nuevo.
+            requestedBody:
+                content:
+                    application/json:
+                          schema:
+                                $ref: '#/components/schemas/userModel'
+                    required: true
+            responses:
+            500:
+                content:
+                    application/json:
+                        schema:                                
+                            $ref: '#/components/responses/NotFound'
+        put:
+            tags:
+            - User
+            summary: Actualiza la informacion del Maestro.
+            requestedBody:
+                content:
+                    application/json:
+                          schema:
+                                $ref: '#/components/schemas/userModel'
+                    required: true
+            responses:
+            500:
+                content:
+                    application/json:
+                        schema:                                
+                            $ref: '#/components/responses/NotFound'
+
+    /cursos:
+        get:
+            tags:
+            - User
+            summary: Permite obtener la informacion de un curso.
+            requestedBody:
+                content:
+                    application/json:
+                          schema:
+                                $ref: '#/components/schemas/cursoModel'
+                    required: true
+            responses:
+            500:
+                content:
+                    application/json:
+                        schema:                                
+                            $ref: '#/components/responses/NotFound'
+        post:
+            tags:
+            - User
+            summary: Postea la informacion del curso nuevo, accesible solo al admin.
+            requestedBody:
+                content:
+                    application/json:
+                          schema:
+                                $ref: '#/components/schemas/cursoModel'
+                    required: true
+            responses:
+            500:
+                content:
+                    application/json:
+                        schema:                                
+                            $ref: '#/components/responses/NotFound'
+        put:
+            tags:
+            - User
+            summary: Actualiza la informacion de un curso.
+            requestedBody:
+                content:
+                    application/json:
+                          schema:
+                                $ref: '#/components/schemas/cursoModel'
+                    required: true
+            responses:
+            500:
+                content:
+                    application/json:
+                        schema:                                
+                            $ref: '#/components/responses/NotFound'
+
+        delete:
+            tags:
+            - User
+            summary: Elimina la informacion de un curso ya existente. 
+            requestedBody:
+                content:
+                    application/json:
+                          schema:
+                                $ref: '#/components/schemas/cursoModel'
+                    required: true
+            responses:
+            500:
+                content:
+                    application/json:
+                        schema:                                
+                            $ref: '#/components/responses/NotFound'
+    /asignaciones:
+        get:
+            tags:
+            - User
+            summary: Permite al alumno ver a que cursos se encuentra asignado. 
+            requestedBody:
+                content:
+                    application/json:
+                          schema:
+                                $ref: '#/components/schemas/asignacionModel'
+                    required: true
+            responses:
+            500:
+                content:
+                    application/json:
+                        schema:                                
+                            $ref: '#/components/responses/NotFound'
+        post:
+            tags:
+            - User
+            summary: Permite al alumno asignarse un curso.
+            requestedBody:
+                content:
+                    application/json:
+                          schema:
+                                $ref: '#/components/schemas/asignacionModel'
+                    required: true
+            responses:
+            500:
+                content:
+                    application/json:
+                        schema:                                
+                            $ref: '#/components/responses/NotFound'
+
+        delete:
+            tags:
+            - User
+            summary: Permite al alumno eliminar una asignacion. 
+            requestedBody:
+                content:
+                    application/json:
+                          schema:
+                                $ref: '#/components/schemas/asignacionModel'
+                    required: true
+            responses:
+            500:
+                content:
+                    application/json:
+                        schema:                                
+                            $ref: '#/components/responses/NotFound'
+    /tareas:
+        get:
+            tags:
+            - User
+            summary: Permite al usuario obtener todas las tareas que se han creado.
+            requestedBody:
+                content:
+                    application/json:
+                          schema:
+                                $ref: '#/components/schemas/tareaModel'
+                    required: true
+            responses:
+            500:
+                content:
+                    application/json:
+                        schema:                                
+                            $ref: '#/components/responses/NotFound'
+        post:
+            tags:
+            - User
+            summary: Permite al maestro crear una nueva tarea para cualquier curso.
+            requestedBody:
+                content:
+                    application/json:
+                          schema:
+                                $ref: '#/components/schemas/tareaModel'
+                    required: true
+            responses:
+            500:
+                content:
+                    application/json:
+                        schema:                                
+                            $ref: '#/components/responses/NotFound'
+        put:
+            tags:
+            - User
+            summary: Permite actualizar la informacion de una tarea.
+            requestedBody:
+                content:
+                    application/json:
+                          schema:
+                                $ref: '#/components/schemas/tareaModel'
+                    required: true
+            responses:
+            500:
+                content:
+                    application/json:
+                        schema:                                
+                            $ref: '#/components/responses/NotFound'
+
+        delete:
+            tags:
+            - User
+            summary: Elimina la informacion de una tarea existente. 
+            requestedBody:
+                content:
+                    application/json:
+                          schema:
+                                $ref: '#/components/schemas/tareaModel'
+                    required: true
+            responses:
+            500:
+                content:
+                    application/json:
+                        schema:                                
+                            $ref: '#/components/responses/NotFound'
+
+
+
+
+
+components:
+    responses:
+        Unauthorized:
+            description: (Unauthorized) no hay autorizacion para logearse.
+        NotFound:
+            description: (NotFound) Invalid Credentials!
+        
+
+    parameters:
+        
+        tokenRefresher:
+            content:
+            name: refreshToken
+            in: cookie
+            descripction: Token de refresco
+            required: true
+            
+
+    schemas:
+        tokenAccesso: 
+            type: object
+            properties:
+                details: 
+                    type: string
+                    descripction: Token de acceso a la plataforma
+
+        RegisterAPIView: 
+            type: object
+            properties:
+                name: 
+                    type: string
+                    descripction: nombre usuario
+                email: 
+                    type: string
+                    descripction: correo electronico del usuario
+                password: 
+                    type: string
+                    descripction: contraseña
+
+        existingEmail:
+            type: object
+            properties:
+                email: 
+                    type: string
+                    description: user with this email already exists.
+
+        LoginAPIView: 
+            type: object
+            properties:
+                email: 
+                    type: string
+                    descripction: correo electronico del usuario
+                password: 
+                    type: string
+                    descripction: contraseña
+        userModel: 
+            type: object
+            properties:
+                nombre: 
+                    type: string
+                    descripction: nombre usuario
+                apellido: 
+                    type: string
+                    descripction: apellido del usuario
+                email: 
+                    type: string
+                    descripction: correo electronico del usuario
+                rol: 
+                    type: string
+                    descripction: rol al que pertenece, puede ser Maestro o alumno
+        cursoModel: 
+            type: object
+            properties:
+                nombre: 
+                    type: string
+                    descripction: nombre del curso
+                semestre: 
+                    type: string
+                    descripction: semestre al que pertenese el curso
+                maestro: 
+                    type: string
+                    descripction: nombre del cusro
+        asignacionModel: 
+            type: object
+            properties:
+                alumno: 
+                    type: string
+                    descripction: nombre del alumno
+                curso: 
+                    type: string
+                    descripction: nombre del curso
+                fecha_asignacion: 
+                    type: string
+                    descripction: fecha de asignacion del curso
+        tareaModel: 
+            type: object
+            properties:
+                nombre: 
+                    type: string
+                    descripction: nombre de la tarea
+                descripcion: 
+                    type: string
+                    descripction: descripcion del la tarea
+                fecha_entrega: 
+                    type: string
+                    descripction: fecha de asignacion de la tarea
+                curso: 
+                    type: string
+                    descripction: Curso al que pertenece
+
+
+# - name: login
+# description: en este endpoint los usuarios ya existentes podran ingresar las credenciales para acceder a la plataforma. 

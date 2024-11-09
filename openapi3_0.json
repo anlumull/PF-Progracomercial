@@ -1,0 +1,746 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Aplicacion diseñada para el curso de Programacion comercial",
+    "description": "Esta api esta diseñada para manejar cursos, asignaciones y tareas de un grupo de estudiantes y maestros.",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://127.0.0.1:8000/api"
+    }
+  ],
+  "tags": [
+    {
+      "name": "register"
+    }
+  ],
+  "description": "En este endpoint se manejara toda la informacion necesaria para registrar un nuevo usuario.",
+  "paths": {
+    "/register": {
+      "post": {
+        "200": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisterAPIView"
+              }
+            }
+          }
+        },
+        "400": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/existingEmail"
+              }
+            }
+          }
+        },
+        "tags": [
+          "register"
+        ],
+        "summary": "Inserta la informacion de un nuevo usuario a la BD.",
+        "requestedBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisterAPIView"
+              }
+            },
+            "required": true
+          }
+        },
+        "responses": null
+      }
+    },
+    "/login": {
+      "post": {
+        "200": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/tokenAccesso"
+              }
+            }
+          }
+        },
+        "500": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/responses/NotFound"
+              }
+            }
+          }
+        },
+        "tags": [
+          "login"
+        ],
+        "summary": "Logea al usuario.",
+        "requestedBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisterAPIView"
+              }
+            },
+            "required": true
+          }
+        },
+        "responses": null
+      }
+    },
+    "/user": {
+      "get": {
+        "500": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/responses/NotFound"
+              }
+            }
+          }
+        },
+        "tags": [
+          "User"
+        ],
+        "summary": "Obtiene la informacion del usuario.",
+        "requestedBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisterAPIView"
+              }
+            },
+            "required": true
+          }
+        },
+        "responses": null
+      }
+    },
+    "/alumnos": {
+      "get": {
+        "500": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/responses/NotFound"
+              }
+            }
+          }
+        },
+        "tags": [
+          "User"
+        ],
+        "summary": "Obtiene la informacion del alumno.",
+        "requestedBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/userModel"
+              }
+            },
+            "required": true
+          }
+        },
+        "responses": null
+      },
+      "post": {
+        "500": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/responses/NotFound"
+              }
+            }
+          }
+        },
+        "tags": [
+          "User"
+        ],
+        "summary": "Postea la informacion del alumno nuevo.",
+        "requestedBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/userModel"
+              }
+            },
+            "required": true
+          }
+        },
+        "responses": null
+      },
+      "put": {
+        "500": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/responses/NotFound"
+              }
+            }
+          }
+        },
+        "tags": [
+          "User"
+        ],
+        "summary": "Actualiza la informacion del alumno.",
+        "requestedBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/userModel"
+              }
+            },
+            "required": true
+          }
+        },
+        "responses": null
+      },
+      "delete": {
+        "500": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/responses/NotFound"
+              }
+            }
+          }
+        },
+        "tags": [
+          "User"
+        ],
+        "summary": "Elimina la informacion del alumno.",
+        "requestedBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/userModel"
+              }
+            },
+            "required": true
+          }
+        },
+        "responses": null
+      }
+    },
+    "/maestros": {
+      "get": {
+        "500": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/responses/NotFound"
+              }
+            }
+          }
+        },
+        "tags": [
+          "User"
+        ],
+        "summary": "Obtiene la informacion del Maestro.",
+        "requestedBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/userModel"
+              }
+            },
+            "required": true
+          }
+        },
+        "responses": null
+      },
+      "post": {
+        "500": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/responses/NotFound"
+              }
+            }
+          }
+        },
+        "tags": [
+          "User"
+        ],
+        "summary": "Postea la informacion del Maestro nuevo.",
+        "requestedBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/userModel"
+              }
+            },
+            "required": true
+          }
+        },
+        "responses": null
+      },
+      "put": {
+        "500": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/responses/NotFound"
+              }
+            }
+          }
+        },
+        "tags": [
+          "User"
+        ],
+        "summary": "Actualiza la informacion del Maestro.",
+        "requestedBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/userModel"
+              }
+            },
+            "required": true
+          }
+        },
+        "responses": null
+      }
+    },
+    "/cursos": {
+      "get": {
+        "500": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/responses/NotFound"
+              }
+            }
+          }
+        },
+        "tags": [
+          "User"
+        ],
+        "summary": "Permite obtener la informacion de un curso.",
+        "requestedBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/cursoModel"
+              }
+            },
+            "required": true
+          }
+        },
+        "responses": null
+      },
+      "post": {
+        "500": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/responses/NotFound"
+              }
+            }
+          }
+        },
+        "tags": [
+          "User"
+        ],
+        "summary": "Postea la informacion del curso nuevo, accesible solo al admin.",
+        "requestedBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/cursoModel"
+              }
+            },
+            "required": true
+          }
+        },
+        "responses": null
+      },
+      "put": {
+        "500": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/responses/NotFound"
+              }
+            }
+          }
+        },
+        "tags": [
+          "User"
+        ],
+        "summary": "Actualiza la informacion de un curso.",
+        "requestedBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/cursoModel"
+              }
+            },
+            "required": true
+          }
+        },
+        "responses": null
+      },
+      "delete": {
+        "500": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/responses/NotFound"
+              }
+            }
+          }
+        },
+        "tags": [
+          "User"
+        ],
+        "summary": "Elimina la informacion de un curso ya existente.",
+        "requestedBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/cursoModel"
+              }
+            },
+            "required": true
+          }
+        },
+        "responses": null
+      }
+    },
+    "/asignaciones": {
+      "get": {
+        "500": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/responses/NotFound"
+              }
+            }
+          }
+        },
+        "tags": [
+          "User"
+        ],
+        "summary": "Permite al alumno ver a que cursos se encuentra asignado.",
+        "requestedBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/asignacionModel"
+              }
+            },
+            "required": true
+          }
+        },
+        "responses": null
+      },
+      "post": {
+        "500": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/responses/NotFound"
+              }
+            }
+          }
+        },
+        "tags": [
+          "User"
+        ],
+        "summary": "Permite al alumno asignarse un curso.",
+        "requestedBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/asignacionModel"
+              }
+            },
+            "required": true
+          }
+        },
+        "responses": null
+      },
+      "delete": {
+        "500": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/responses/NotFound"
+              }
+            }
+          }
+        },
+        "tags": [
+          "User"
+        ],
+        "summary": "Permite al alumno eliminar una asignacion.",
+        "requestedBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/asignacionModel"
+              }
+            },
+            "required": true
+          }
+        },
+        "responses": null
+      }
+    },
+    "/tareas": {
+      "get": {
+        "500": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/responses/NotFound"
+              }
+            }
+          }
+        },
+        "tags": [
+          "User"
+        ],
+        "summary": "Permite al usuario obtener todas las tareas que se han creado.",
+        "requestedBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/tareaModel"
+              }
+            },
+            "required": true
+          }
+        },
+        "responses": null
+      },
+      "post": {
+        "500": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/responses/NotFound"
+              }
+            }
+          }
+        },
+        "tags": [
+          "User"
+        ],
+        "summary": "Permite al maestro crear una nueva tarea para cualquier curso.",
+        "requestedBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/tareaModel"
+              }
+            },
+            "required": true
+          }
+        },
+        "responses": null
+      },
+      "put": {
+        "500": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/responses/NotFound"
+              }
+            }
+          }
+        },
+        "tags": [
+          "User"
+        ],
+        "summary": "Permite actualizar la informacion de una tarea.",
+        "requestedBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/tareaModel"
+              }
+            },
+            "required": true
+          }
+        },
+        "responses": null
+      },
+      "delete": {
+        "500": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/responses/NotFound"
+              }
+            }
+          }
+        },
+        "tags": [
+          "User"
+        ],
+        "summary": "Elimina la informacion de una tarea existente.",
+        "requestedBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/tareaModel"
+              }
+            },
+            "required": true
+          }
+        },
+        "responses": null
+      }
+    }
+  },
+  "components": {
+    "responses": {
+      "Unauthorized": {
+        "description": "(Unauthorized) no hay autorizacion para logearse."
+      },
+      "NotFound": {
+        "description": "(NotFound) Invalid Credentials!"
+      }
+    },
+    "parameters": {
+      "tokenRefresher": {
+        "content": null,
+        "name": "refreshToken",
+        "in": "cookie",
+        "descripction": "Token de refresco",
+        "required": true
+      }
+    },
+    "schemas": {
+      "tokenAccesso": {
+        "type": "object",
+        "properties": {
+          "details": {
+            "type": "string",
+            "descripction": "Token de acceso a la plataforma"
+          }
+        }
+      },
+      "RegisterAPIView": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "descripction": "nombre usuario"
+          },
+          "email": {
+            "type": "string",
+            "descripction": "correo electronico del usuario"
+          },
+          "password": {
+            "type": "string",
+            "descripction": "contraseña"
+          }
+        }
+      },
+      "existingEmail": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "description": "user with this email already exists."
+          }
+        }
+      },
+      "LoginAPIView": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "descripction": "correo electronico del usuario"
+          },
+          "password": {
+            "type": "string",
+            "descripction": "contraseña"
+          }
+        }
+      },
+      "userModel": {
+        "type": "object",
+        "properties": {
+          "nombre": {
+            "type": "string",
+            "descripction": "nombre usuario"
+          },
+          "apellido": {
+            "type": "string",
+            "descripction": "apellido del usuario"
+          },
+          "email": {
+            "type": "string",
+            "descripction": "correo electronico del usuario"
+          },
+          "rol": {
+            "type": "string",
+            "descripction": "rol al que pertenece, puede ser Maestro o alumno"
+          }
+        }
+      },
+      "cursoModel": {
+        "type": "object",
+        "properties": {
+          "nombre": {
+            "type": "string",
+            "descripction": "nombre del curso"
+          },
+          "semestre": {
+            "type": "string",
+            "descripction": "semestre al que pertenese el curso"
+          },
+          "maestro": {
+            "type": "string",
+            "descripction": "nombre del cusro"
+          }
+        }
+      },
+      "asignacionModel": {
+        "type": "object",
+        "properties": {
+          "alumno": {
+            "type": "string",
+            "descripction": "nombre del alumno"
+          },
+          "curso": {
+            "type": "string",
+            "descripction": "nombre del curso"
+          },
+          "fecha_asignacion": {
+            "type": "string",
+            "descripction": "fecha de asignacion del curso"
+          }
+        }
+      },
+      "tareaModel": {
+        "type": "object",
+        "properties": {
+          "nombre": {
+            "type": "string",
+            "descripction": "nombre de la tarea"
+          },
+          "descripcion": {
+            "type": "string",
+            "descripction": "descripcion del la tarea"
+          },
+          "fecha_entrega": {
+            "type": "string",
+            "descripction": "fecha de asignacion de la tarea"
+          },
+          "curso": {
+            "type": "string",
+            "descripction": "Curso al que pertenece"
+          }
+        }
+      }
+    }
+  }
+}
