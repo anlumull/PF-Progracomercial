@@ -49,18 +49,18 @@ class UserAPIView(APIView):
             return Response(UserSerializer(user).data)
         raise AuthenticationFailed('unauthenticated')
     
-class UsersAPIView(APIView):
-    def get(self, request):
-        auth = get_authorization_header(request).split()
+# class UsersAPIView(APIView):
+#     def get(self, request):
+#         auth = get_authorization_header(request).split()
 
-        if auth and len(auth) == 2:
-            token = auth[1].decode('utf-8')
-            id = decode_access_token(token)
+#         if auth and len(auth) == 2:
+#             token = auth[1].decode('utf-8')
+#             id = decode_access_token(token)
 
-            user = User.objects.all()
+#             user = User.objects.all()
 
-            return Response(UserSerializer(user).data)
-        raise AuthenticationFailed('unauthenticated')
+#             return Response(UserSerializer(user).data)
+#         raise AuthenticationFailed('unauthenticated')
     
 class RefreshAPIView(APIView):
     def post(self, request):
