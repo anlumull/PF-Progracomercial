@@ -105,7 +105,9 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 REST_FRAMEWORK = {
-    'EXCEPTION_HANDLER': 'core.exceptions.status_code_handler'
+    'EXCEPTION_HANDLER': 'core.exceptions.status_code_handler',
+    'DEFAULT_PAGINATION_CLASS' : 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE' : 2,
 }
 
 # Internationalization
